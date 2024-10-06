@@ -1,0 +1,40 @@
+{% extends 'evalinstructor/layout.html' %}
+{% block title %} {{title}} {% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="col-md-7 mx-auto mt-5 mb-5">
+
+    <div class="col-9 mx-auto pt-4 formsback backs p-5">
+        <div class="mx-auto mb-4 c">
+            <img class="logohash" src="/static/img/icons/LogoSENAblanco.png">
+        </div>
+        <form action="userLogin" method="POST">
+            {% csrf_token %}
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">username</span>
+                <input type="text" name="username" class="form-control">
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">Password</span>
+                <input type="password" name="password" class="form-control">
+            </div>
+
+            <div class="col-12 mx-auto">
+                <div class="row">
+                    <div class="col-6 mt-3 mx-auto c">
+                        {{ form.captcha }}
+                    </div>
+        
+                    <div class="col-6 mt-5 d-grid gap-2 mx-auto">
+                        <button type="submit" class="btn btn-success">LogIn</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
