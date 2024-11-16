@@ -1,0 +1,9 @@
+venv
+
+administracion/__pycache__
+dbs/__pycache__
+evalinstructor/__pycache__
+evaluaciones/__pycache__
+jobs/__pycache__
+loadlists/__pycache__
+

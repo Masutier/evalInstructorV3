@@ -1,0 +1,89 @@
+{% extends 'evalinstructor/layout.html' %}
+{% load static %}
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+<div class="contenedor">    
+    <div class="col-9 mx-auto mt-5 c">
+        <h1>Valoración de instructores por parte de los aprendices</h1>
+        <div class="col-11 mx-auto">
+            <p>La aplicación tiene como finalidad permitirle a los aprendices dar una valoración respecto a como creen que fue el desempeño de los instructores que estuvieron acompañandolos por un trimestre academico.</p>
+        </div>
+        <div class="col-lg-9 mx-auto backform">
+            <div id="contador" class="contador">
+                <div class="col-7 mx-auto p-3 marco">
+                    <input id="inp" class="hidden" value="{{ start_date }}">
+                    <h2 class="counterdown">Solo faltan:</h2>
+                    <h1 id="countdown" class="counterdown"></h1>
+                    <h3 class="counterdown">Para evaluar los Instructores</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mx-auto mt-4 c">
+    <p>¡INGRESA AQUÍ!</p>
+</div>
+<div class="flecha c">
+    <img class="flecha" src="{% static 'img/img/flecha.png' %}" alt="">
+</div>
+<div class="col-12 mx-auto mt-5 mb-5">
+<div class="col-7 mx-auto mt-3 mb-5">
+    <h3 class="c">Portal de Acceso</h3>
+        <div class="col-8 mx-auto p-5 backs">
+            <form action="validarHash" method="POST">
+                {% csrf_token %}
+                <div class="col-lg-12 col-sm-10 mx-auto">
+                    <div class="mb-3">
+                        <div class="mx-auto c">
+                            <img class="logohash" src="{% static 'img/icons/LogoSENAblanco.png' %}">
+                        </div>
+                        <h3 class="txtcol1 c">HASH</h3>
+                        <p class="txtcol1 c">Ingrese el hash que fue enviado a su correo institucional o personal</p>
+                        <input type="password" class="form-control" id="hashFormControl" name="hash" required>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-sm-10 mx-auto d-grid gap-2 mt-5">
+                    <input class="btn btn-color2" type="submit" value="Aceptar">
+                    <a class="btn btn-primary btn-block c mt-3"  href="{% url 'recuperacion' %}">Recuperacion de Hash</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if start_date %}
+<script type="text/javascript">
+    var a = document.getElementById("inp").value;
+    
+    // Set the date we're counting down to
+    var countDownDate = new Date(a);
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="countdown"
+        document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+
+</script>
+{% endif %}
+{% endblock %}

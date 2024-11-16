@@ -1,0 +1,34 @@
+{% extends 'evalinstructor/layout.html' %}
+{% block title %} {{title}} {% endblock %}
+{% load static %}
+{% block content %}
+    
+<div class="col-12 mx-auto mt-4 mb-3">
+    <div class="col-9 mx-auto c">
+        <h1>Bienvenid@ Instructor(a) {{ instructor.3 }} {{ instructor.4 }}</h1>
+    </div>
+
+    <div class="col-lg-6 col-sm-10 mx-auto p-5 mb-3">
+
+        <div class="col-12 mx-auto px-5 pt-5 pb-4 backs">
+            <h2>Subir La Foto Del Instructor(a)</h2>
+            <form action="uploadPhoto" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="PHOTO" class="form-label">Señor(a) Instructor(a), Gracias por su pronta respuesta.</label>
+                    <input class="form-control" type="file" name="PHOTO" required>
+                    <input type="hidden" id="NUMERO_DE_DOCUMENTO" name="NUMERO_DE_DOCUMENTO" value='{{ instructor.6 }}'>
+                </div>
+                
+                <div class="col-7 mx-auto">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-success mt-3" type="submit" name="submit">Procesar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

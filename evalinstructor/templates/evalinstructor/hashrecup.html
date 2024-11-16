@@ -1,0 +1,31 @@
+{% extends 'evalinstructor/layout.html' %}
+{% load static %}
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+
+<div class="card col-6 mt-5 mx-auto">
+    <div class="card-header text-bg-primary">
+      Recuperacion de hash
+    </div>
+    <div class="card-body">
+        <form action="recuperacion" method="POST" >
+          {% csrf_token %}
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label fw-semibold">Numero de documento</label>
+              <input type="number" class="form-control" id="numdocument" name="numero_de_documento" required>
+            </div>
+            <div class="col-lg-4 col-sm-8 mx-auto d-grid gap-2 mt-4">
+              <button type="submit" class="btn btn-primary ">Enviar</button>
+            </div>
+          </form>
+            <div class="card mt-4">
+              <div class="card-body">
+                <label for="disabledTextInput" class="card-title fw-semibold">Hash</label>
+                <p class="card-text">{{ aprendiz.9 }} </p>
+              </div>
+            </div>
+    </div>
+  </div>
+    
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'evalinstructor/layout.html' %}
+{% block title %} {{title}} {% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="col-3 mx-auto mt-4 c">
+    <div class="row">
+        <div class="card" >
+            <div class="card-body">
+              <h5 class="card-title">INFORMACION DEL APRENDIZ</h5>
+              <p class="card-text">FICHA: {{ aprendiz.7 }} </p>
+              <p class="card-text">NUMERO DE DOCUMENTO: {{ aprendiz.1 }} </p>
+              <p class="card-text">NOMBRES:  {{ aprendiz.2 }}</p>
+              <p class="card-text">APELLIDOS: {{ aprendiz.3 }} </p>
+            </div>
+        </div>    
+    </div>
+</div>
+
+<div class="col-3 mx-auto mt-4 c">
+    <h3>INSTRUCTORES POR EVALUAR</h3>
+</div>
+
+
+<form action="obtener_preguntas" method="POST" >
+    <div class="col-8 mx-auto mt-4 c">
+        <div class="row">
+            {% csrf_token %}
+            {% for inst in instructo %}
+            <div class="col-md-3 mb-4">
+                <a class="btn" href="/obtener_preguntas/{{ inst.6 }}/{{ aprendiz.1 }}">
+                    {% if inst.11 == 0 %}
+                    <div class="card">
+                        <img src="/{{ inst.12 }}" class="card-img-top" alt="Foto del instructor">
+                        <div class="card-body">
+                            <p>Nombres: {{ inst.3 }}</p>
+                            <p>Apellidos: {{ inst.4 }}</p>
+                            <!-- <p>Programa de Formacion: {{ inst.2 }}</p> -->
+                        </div>
+                    </div>
+                    {%endif%}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>    
+</form>
+
+
+
+{% endblock %}

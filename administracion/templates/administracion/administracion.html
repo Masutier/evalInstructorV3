@@ -1,0 +1,155 @@
+{% extends 'evalinstructor/layout.html' %}
+{% block title %} {{ title }} {% endblock title %}
+{% load static %}
+{% block content %}
+
+<div class="col-12 mx-auto">
+    <div class="row">
+        <div class="col-2 mx-auto mt-5 ">
+            <h2 class="mb-3 c">Activaciones</h2>
+            <div class="d-grid gap-2">
+                <a class="btn btn-color2 mb-3 ms-3" href="ready">Activar Schedules</a>
+                <a class="btn btn-color2 ms-3" href="createFinalReportFicha">Crear Reporte Final por Ficha</a> 
+                <a class="btn btn-color2 ms-3" href="createFinalReportDocumento">Crear Reporte por Final por Documento</a> 
+            </div>
+        </div>
+        <div class="col-10 mx-auto ">
+
+            <div class="col-9 mx-auto mt-5 mb-5 c">
+                <h1 class="c">ADMINISTRACION</h1>
+                <h2>Activacion de la Plataforma</h2>
+                <h2 class="txtcol0"> {{ startdate }}</h2>
+            </div>
+
+            <div class="col-11 mx-auto">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-footer">
+                                <h5 class="card-img-top c">Comienza {{ startdate }}</h5>
+                                <h5 class="card-img-top c">Termina {{ endCoordination }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Coordinaciones Suben Listados</h5>
+                                <p class="card-text">Tiempo para que las coordinaciones suban las listas de Instructores y Aprendices.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-footer">
+                                <h5 class="card-img-top c">Comienza {{ endCoordination }}</h5>
+                                <h5 class="card-img-top c">Termina {{ endInstPhoto }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Instructores Suben La Foto</h5>
+                                <p class="card-text">Este es el tiempo que tienen los Instructores para que suban su foto.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-footer">
+                                <h5 class="card-img-top c">Comienza {{ endInstPhoto }}</h5>
+                                <h5 class="card-img-top c">Termina {{ endEvaluation }}</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Aprendices Evaluan a Los Instructores</h5>
+                                <p class="card-text">Durante este tiempo los Aprendices contestaran el formulario de evaluacion.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>     
+            </div>
+
+            <div class="col-11 mx-auto mt-5">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body c">
+                                <h5 class="card-title">Coordinaciones Participantes</h5>
+                                <h3 class="card-text">{{ coordqty }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body c">
+                                <h5 class="card-title">Instructores Listados</h5>
+                                <h3 class="card-text">{{ instrucqty }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body c">
+                                <h5 class="card-title">Aprendices Evaluando</h5>
+                                <h3 class="card-text">{{ aprendqty }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>     
+            </div>
+
+            <div class="col-11 mx-auto mt-5">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body c">
+                                <h5 class="card-title">Instructores Participantes SIN Foto</h5>
+                                <h3 class="card-text">{{ instsinfotoqty }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body c">
+                                <h5 class="card-title">Instructores Participantes CON Foto</h5>
+                                <h3 class="card-text">{{ instconfotoqty }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>     
+            </div>
+
+            <div class="col-11 mx-auto mt-5">
+                <h2 class="mb-4 c">Coordinaciones Participantes</h2>
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">REGIONAL</th>
+                                <th scope="col">CENTRO</th>
+                                <th scope="col">COORDINACION</th>
+                                <th scope="col">NOMBRE</th>
+                                <th scope="col">APELLIDOS</th>
+                                <th scope="col">EMAIL</th>
+                                <th scope="col">GRUPO</th>
+                                <th scope="col">FECHA_COMIENZO_EVAL</th>
+                                <th scope="col">FECHA_DE_UPLOAD</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for coordinacion in coordinaciones %}
+                                <tr>
+                                    <td>{{ coordinacion.0 }}</td>
+                                    <td>{{ coordinacion.1 }}</td>
+                                    <td>{{ coordinacion.2 }}</td>
+                                    <td>{{ coordinacion.3 }}</td>
+                                    <td>{{ coordinacion.4 }}</td>
+                                    <td>{{ coordinacion.5 }}</td>
+                                    <td>{{ coordinacion.8 }}</td>
+                                    <td>{{ coordinacion.6 }}</td>
+                                    <td>{{ coordinacion.9 }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
