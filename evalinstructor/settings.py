@@ -12,7 +12,7 @@ SECRET_KEY = config['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '35.190.161.167']
+ALLOWED_HOSTS = ['masutier.myftp.org', '34.134.139.218']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
