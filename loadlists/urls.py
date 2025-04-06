@@ -10,8 +10,6 @@ urlpatterns = [
     path('loadings', loadings, name='loadings'),
     path('loadInstructores', loadInstructores, name='loadInstructores'),
     path('loadAprendicesMany', loadAprendicesMany, name='loadAprendicesMany'),
-    path('createFinalPorCoordinacion/<data>', createFinalPorCoordinacion, name='createFinalPorCoordinacion'),
-
 
     path('uploadPhoto', uploadPhoto, name='uploadPhoto'),
 

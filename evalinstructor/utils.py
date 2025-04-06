@@ -11,8 +11,8 @@ Aprendice_destiny_path = "dbs/data/csvs/laprend"
 instructor_destiny_path = "dbs/data/csvs/linst"
 # Folder to save csvs coordinaciones
 coordinador_destiny_path = "dbs/data/csvs/lcoord"
-# Folder to save xlsx reportes
-reporte_destiny_path = "dbs/data/reportes"
+# Folder to save reportes xlsx
+reportes_destiny_path = "dbs/data/xlsx/reportes"
 
 
 def semestre():
@@ -70,6 +70,7 @@ def crearInstructorFolder():
         endDir = instructor_destiny_path + newDir
         return endDir
 
+
 # crear Coordinador directorio si no existe
 def createCoordinatorFolder():
     newDir = semestre()
@@ -81,15 +82,18 @@ def createCoordinatorFolder():
         endDir = coordinador_destiny_path + newDir
         return endDir
 
+
+# crear Reprotes directorio si no existe
 def createReportFolder():
     newDir = semestre()
     try:
-        os.makedirs(reporte_destiny_path + newDir)
-        endDir = reporte_destiny_path + newDir
+        os.makedirs(reportes_destiny_path + newDir)
+        endDir = reportes_destiny_path + newDir
         return endDir
     except:
-        endDir = reporte_destiny_path + newDir
+        endDir = reportes_destiny_path + newDir
         return endDir
+
 
 # Clean file name
 def clean_tbl_name(csvf):

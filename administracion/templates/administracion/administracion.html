@@ -8,9 +8,9 @@
         <div class="col-2 mx-auto mt-5 ">
             <h2 class="mb-3 c">Activaciones</h2>
             <div class="d-grid gap-2">
-                <a class="btn btn-color2 mb-3 ms-3" href="ready">Activar Schedules</a>
-                <a class="btn btn-color2 ms-3" href="createFinalReportFicha">Crear Reporte Final por Ficha</a> 
-                <a class="btn btn-color2 ms-3" href="createFinalReportDocumento">Crear Reporte por Final por Documento</a> 
+                <a class="btn btn-danger mb-3 ms-3" href="ready">Activar Schedules</a>
+                <a class="btn btn-color2 ms-3" href="createFinalReport">Reporte Final</a>
+                <a class="btn btn-color2 ms-3" href="createReportInstructor">Reporte Instructores</a>
             </div>
         </div>
         <div class="col-10 mx-auto ">
@@ -25,7 +25,7 @@
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     <div class="col">
                         <div class="card h-100">
-                            <div class="card-footer">
+                            <div class="card-body">
                                 <h5 class="card-img-top c">Comienza {{ startdate }}</h5>
                                 <h5 class="card-img-top c">Termina {{ endCoordination }}</h5>
                             </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col">
                         <div class="card h-100">
-                            <div class="card-footer">
+                            <div class="card-body">
                                 <h5 class="card-img-top c">Comienza {{ endCoordination }}</h5>
                                 <h5 class="card-img-top c">Termina {{ endInstPhoto }}</h5>
                             </div>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="col">
                         <div class="card h-100">
-                            <div class="card-footer">
+                            <div class="card-body">
                                 <h5 class="card-img-top c">Comienza {{ endInstPhoto }}</h5>
                                 <h5 class="card-img-top c">Termina {{ endEvaluation }}</h5>
                             </div>

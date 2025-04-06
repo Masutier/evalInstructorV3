@@ -74,7 +74,7 @@ def guardar_respuestas(request, pk, pk2):
         
         respuestas = request.POST
         respuestas_data = {
-            "FICHA": instructor[0],
+            "FICHA": aprendiz[7],
             "DOCAPRENDIZ": pk2,
             "APRENDIZ_NAME": aprendiz[2],
             "APRENDIZ_LAST": aprendiz[3],

@@ -14,7 +14,6 @@ urlpatterns = [
     path('validarHash', validarHash, name='validarHash'),
     path('about', about, name='about'),
     path('recuperacion', recuperacion, name='recuperacion'),
-    
 ]
 
 if settings.DEBUG:

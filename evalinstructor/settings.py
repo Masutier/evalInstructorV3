@@ -12,7 +12,7 @@ SECRET_KEY = config['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['masutier.myftp.org', '35.222.20.7', '127.0.0.1']
+ALLOWED_HOSTS = ['192.168.0.177', '127.0.0.1', 'localhost']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -110,7 +110,7 @@ MEDIA_URL = '/media/'
 
 SESSION_COOKIE_AGE = 21600
 SESSION_COOKIE_SAMESITE = None
-CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = False
 SECURE_HSTS_SECONDS = 60
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True

@@ -12,9 +12,9 @@ BASE_DIR = settings.BASE_DIR
 
 def home(request):
     try:
-        sqlQuery = f"""SELECT ENDPHOTODATE FROM EvalFechas"""
-        photo_date = call_db(sqlQuery)
-        start_date = datetime.strptime(photo_date[0][0], '%Y-%m-%d %H:%M:%S').date()
+        sqlQuery = f"""SELECT STARTDATE FROM EvalFechas"""
+        firstDate = call_db(sqlQuery)
+        start_date = datetime.strptime(firstDate[0][0], '%Y-%m-%d %H:%M:%S').date()
 
         context = {"title": "SENA - Evaluación de instructores", "start_date": start_date}
         return render(request, "evalinstructor/home.html", context)
@@ -22,7 +22,6 @@ def home(request):
     except:
         context = {"title": "LogIn"}
         return render(request, "administracion/login.html", context)
-    
 
 
 def validarHash(request):
@@ -56,6 +55,7 @@ def validarHash(request):
                     sqlApren = f"""SELECT * FROM Aprendices WHERE HASH =?"""
                     aprendiz = call_db_one(sqlApren, hash)
                     if aprendiz[10] == 'aprendiz':
+
                         return redirect("obtener_datos_aprendiz", pk=hash)
                     else:
                         messages.warning(request, f'El registro del aprendiz no se encontro, por favor verificar con su instructor.')
@@ -90,3 +90,4 @@ def recuperacion(request):
     else:
         context = {"title": "Recuperacion Hash"}
         return render(request, "evalinstructor/hashrecup.html", context)
+

@@ -13,7 +13,7 @@ def setup():
         allDates = call_db(sqlDates)
 
         startDate = allDates[0][0]
-        StartDX = datetime.strptime(startDate, "%Y-%m-%d %H:%M:%S") + timedelta(hours=8, minutes=30)
+        StartDX = datetime.strptime(startDate, "%Y-%m-%d %H:%M:%S") + timedelta(hours=18, minutes=0)
         StartD = split_date(StartDX)
 
         startInst = allDates[0][1]
@@ -35,7 +35,6 @@ def split_date(atrr):
     hourx = date.strftime(atrr, '%H')
     minutx = date.strftime(atrr, '%M')
     secx = date.strftime(atrr, '%S')
-
     pieceD = [yearx, monthx, dayx, hourx, minutx, secx]
 
     return pieceD

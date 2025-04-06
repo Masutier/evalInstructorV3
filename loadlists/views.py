@@ -2,7 +2,6 @@ import os
 import hashlib
 import pandas as pd
 import sqlite3 as sql3
-from django.http import HttpResponse
 from datetime import datetime, date, timedelta
 from django.conf import settings
 from django.contrib import messages
@@ -146,7 +145,6 @@ def loadInstructores(request):
     return redirect("home")
 
 
-
 def loadAprendicesMany(request):
     data_to_display = None
     listxx=[]
@@ -234,63 +232,3 @@ def uploadPhoto(request):
 
     context = {'title': "Load Foto"}
     return render(request, 'loadlists/uploadPhoto.html', context)
-
-def createFinalPorCoordinacion(request, data):
-    dataeval = "SELECT ENDEVALUACION FROM EvalFechas"
-    endDate = call_db(dataeval)
-    timing = datetime.now()  
-    timing_str = timing.strftime('%Y-%m-%d_%H-%M-%S')  
-
-    if endDate and len(endDate) > 0:
-        endDate = endDate[0][0]  
-        print(f"Fecha de fin de evaluación: {endDate}")
-        try:
-            if isinstance(endDate, str):
-                endDate = datetime.strptime(endDate, '%Y-%m-%d %H:%M:%S')
-        except ValueError:
-            endDate = datetime.strptime(endDate, '%Y-%m-%d')
-        print(f"Fecha endDate (fin evaluación): {endDate}, Fecha actual timing: {timing}")
-
-        if endDate < timing:  
-            inform2 = []
-            fullTableCordInstructor(request)
-            sqlquery = "SELECT * FROM VRESULTADOSXCOORDINACION WHERE COORDINACION = ?"
-            informe2 = call_db_all(sqlquery, data)
-
-            for info2 in informe2:
-                info2 = list(info2)
-                diction2 = {
-                    "DOCAPRENDIZ": info2[0], "DOCINSTRUCTOR": info2[1], "COORDINACION": info2[2],
-                    "P1": info2[3], "P2": info2[4], "P3": info2[5], "P4": info2[6], "P5": info2[7],
-                    "P6": info2[8], "P7": info2[9], "P8": info2[10], "P9": info2[11], "P10": info2[12],
-                    "P11": info2[13], "P12": info2[14]
-                }
-                inform2.append(diction2)
-
-            dfdocumento = pd.DataFrame(inform2)
-            endDir = createReportFolder()
-            dfdocumento.to_excel(endDir + f"reporte_Final_{timing_str}.xlsx", index=False)
-
-            filename2 = f"reporte_Final_{timing_str}.xlsx"
-            file_path = os.path.join(endDir, filename2)
-
-            if not os.path.exists(file_path):
-                messages.error(request, 'El archivo no se encontró.')
-                return response
-
-            with open(file_path, 'rb') as f:
-                response = HttpResponse(f.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-                response['Content-Disposition'] = f'attachment; filename="{filename2}"'
-                response['Content-Length'] = os.path.getsize(file_path)
-
-            messages.info(request, 'Archivo descargado exitosamente.')
-            return response
-        else:
-            print("La evaluación aún está en proceso.")
-            messages.info(request, 'Aún se encuentra la evaluación en proceso.')
-            return redirect('home')
-    else:
-        messages.error(request, 'No se pudo obtener la fecha de fin de evaluación.')
-        return redirect('home')
-
-    return redirect('home')
